@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  db:
+    container_name: bible-nestjs
+    image: postgres
+    environment:
+      POSTGRES_USER: albert
+      POSTGRES_DB: bible
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5432:5432

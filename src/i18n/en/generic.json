@@ -1,0 +1,9 @@
+{
+    "item_updated": "The item {id} was updated",
+    "item_created": "The item {id} was created",
+    "items_created": "The items were created",
+    "item_published": "The item {id} was published",
+    "item_deleted": "The item {id} was deleted",
+    "item_as_removed": "The item {id} was  marked as removed",
+    "item_to_be_archived": "The item {id} was marked to be archived"
+}

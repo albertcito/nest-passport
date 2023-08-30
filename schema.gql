@@ -1,0 +1,119 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Lang {
+  active: Boolean!
+  createdAt: Float!
+  createdBy: Int
+  id: String!
+  ipAddress: String!
+  isBlocked: Boolean!
+  localname: String!
+  name: String!
+  updatedAt: Float
+  updatedBy: Int
+}
+
+type LangPaginationResponse {
+  data: [Lang!]!
+  pagination: Pagination!
+}
+
+type LoginResponse {
+  token: String!
+  user: User!
+}
+
+type MessageField {
+  message: String!
+  type: MessageType!
+}
+
+"""All possible message types"""
+enum MessageType {
+  error
+  info
+  success
+  warning
+}
+
+type Mutation {
+  forgotPassword(email: String!): String!
+  langDelete(id: String!): MessageField!
+  login(email: String!, password: String!): LoginResponse!
+  logout: Boolean!
+  profileBasicUpdate(firstName: String!, langID: String!, lastName: String!): UserMessageResponse!
+  profileUpdateEmail(email: String!, password: String!): UserMessageResponse!
+  profileUpdatePassword(newPassword: String!, password: String!): UserMessageResponse!
+  resetPassword(password: String!, passwordConfirmation: String!, token: String!): String!
+  userBasicUpdate(firstName: String!, id: Int!, langID: String!, lastName: String!): UserMessageResponse!
+  userUpdateEmail(email: String!, id: Int!): UserMessageResponse!
+  userUpdatePassword(id: Int!, password: String!): UserMessageResponse!
+}
+
+type Pagination {
+  from: Int!
+  length: Int!
+  limit: Int!
+  page: Int!
+  to: Int!
+  total: Int!
+}
+
+input PaginationUserInput {
+  langID: String = "EN"
+  limit: Int = 10
+
+  """ASC or DESC"""
+  order: String = "DESC"
+
+  """Columns allowed: id, email, first_name, last_name, user_status_id"""
+  orderBy: String = "id"
+  page: Int = 1
+
+  """Search by name, email or ID"""
+  search: String
+  tags: [Int!]
+}
+
+type Query {
+  lang(id: String!): Lang!
+  langs(active: Boolean): LangPaginationResponse!
+  loggedUserAuth: User!
+  loggedUserNoAuth: User!
+  user(id: Int!): User!
+  users(pagination: PaginationUserInput = {limit: 10, order: "DESC", orderBy: "id", page: 1}): UserPaginationResponse!
+}
+
+type User {
+  bio: String
+  createdAt: Float!
+  createdBy: Int
+  email: String!
+  emailVerified: DateTime
+  firstName: String!
+  fullName: String!
+  id: Int!
+  ipAddress: String!
+  langID: String!
+  lastName: String!
+  updatedAt: Float
+  updatedBy: Int
+  username: String!
+}
+
+type UserMessageResponse {
+  data: User!
+  message: MessageField!
+}
+
+type UserPaginationResponse {
+  data: [User!]!
+  pagination: Pagination!
+}
