@@ -10,7 +10,9 @@ export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     public readonly db: SaveDBService,
-  ) {}
+  ) {
+    console.log('AuthService running...');
+  }
 
   async findOrNull(input: FindOptionsWhere<User>) {
     return await this.db.dataSource

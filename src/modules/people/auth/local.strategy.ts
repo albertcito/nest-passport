@@ -7,6 +7,7 @@ import User from '../user/user.model';
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
+    console.log('LocalStrategy running...');
     super({ usernameField: 'email', passwordField: 'password' });
   }
 
