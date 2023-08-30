@@ -24,10 +24,7 @@ type BaseEntityID = ObjectLiteral & { id: number | string };
 
 @Injectable()
 export default class SaveDBService {
-  constructor(
-    public readonly dataSource: DataSource,
-    @Inject(REQUEST) private readonly context?: CustomContext,
-  ) {}
+  constructor(public readonly dataSource: DataSource) {}
 
   async findOne<T extends ObjectLiteral>(
     where: FindOneOptions<T>,
@@ -159,21 +156,21 @@ export default class SaveDBService {
 
   private auditUpdateData() {
     const now = new Date();
-    const updatedBy = this.context?.req.user?.id;
+    // const updatedBy = this.context?.req.user?.id;
     return {
       updatedAt: now,
-      updatedBy,
-      ipAddress: IpAddress.getIpAddress(this.context?.req),
+      // updatedBy,
+      // ipAddress: IpAddress.getIpAddress(this.context?.req),
     };
   }
 
   private auditCreateData() {
     const now = new Date();
-    const createdBy = this.context?.req.user?.id;
+    // const createdBy = this.context?.req.user?.id;
     return {
       createdAt: now,
-      createdBy,
-      ipAddress: IpAddress.getIpAddress(this.context?.req),
+      // createdBy,
+      // ipAddress: IpAddress.getIpAddress(this.context?.req),
     };
   }
 }
